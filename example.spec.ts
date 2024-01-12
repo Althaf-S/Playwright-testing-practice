@@ -32,5 +32,13 @@ test('menu bar',async({page}) => {
 
   await menuBar.click();
 
-  await expect(page.url).toContain('Best Sellers')
+  await page.waitForSelector('ul.hmenu:nth-child(1) > li:nth-child(1) > div:nth-child(1)');
+
+  const bestSellers = await page.$('ul.hmenu:nth-child(1) > li:nth-child(2) > a:nth-child(1)');
+
+  await bestSellers.click()
+
+  await page.waitForSelector('#zg_banner_text')
+
 })
+
